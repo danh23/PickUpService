@@ -13,12 +13,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import ro.pickupservice.data.coordinates.entity.Coordinates;
 import ro.pickupservice.data.sport.entity.Sport;
 
 @Entity
@@ -33,30 +35,39 @@ public class User {
 	private String lastName;
 	private String city;
 	private String country;
-	private List<Sport> sports;
-	private List<User> friend;
+//	private List<Sport> sports;
+//	private List<User> friend;
+	private Coordinates coordinates;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="user_friends", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id")}, inverseJoinColumns = {
-	@JoinColumn(name = "friend_id", referencedColumnName = "id")})
-	@JsonIgnore
-	public List<User> getFriend() {
-		return friend;
+//	@ManyToMany(fetch=FetchType.LAZY)
+//	@JoinTable(name="user_friends", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id")}, inverseJoinColumns = {
+//	@JoinColumn(name = "friend_id", referencedColumnName = "id")})
+//	@JsonIgnore
+//	public List<User> getFriend() {
+//		return friend;
+//	}
+//	public void setFriend(List<User> friend) {
+//		this.friend = friend;
+//	}
+	
+	
+	@OneToOne(fetch=FetchType.LAZY)
+	public Coordinates getCoordinates() {
+		return coordinates;
 	}
-	public void setFriend(List<User> friend) {
-		this.friend = friend;
+	public void setCoordinates(Coordinates coordinates) {
+		this.coordinates = coordinates;
 	}
 	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="user_sports", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id")}, 
-		inverseJoinColumns = { @JoinColumn(name = "sport_id", referencedColumnName = "id")})
-	@JsonBackReference
-	public List<Sport> getSports() {
-		return sports;
-	}
-	public void setSports(List<Sport> sports) {
-		this.sports = sports;
-	}
+//	@ManyToMany(fetch=FetchType.LAZY)
+//	@JoinTable(name="user_sports", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id")}, inverseJoinColumns = { @JoinColumn(name = "sport_id", referencedColumnName = "id")})
+//	@JsonBackReference
+//	public List<Sport> getSports() {
+//		return sports;
+//	}
+//	public void setSports(List<Sport> sports) {
+//		this.sports = sports;
+//	}
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)	
