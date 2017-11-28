@@ -41,12 +41,6 @@ public class UserController {
 	    return new ResponseEntity<User>(user, HttpStatus.OK);
 	  }
 	  
-	  @RequestMapping(value = "/getUserSportsById" , method = RequestMethod.POST)
-	  public ResponseEntity<List<Sport>> getUserSportsById(@RequestBody Long id) {
-		  List<Sport> userSports = userService.getUserSports(id);  
-	    return new ResponseEntity<>(userSports, HttpStatus.OK);
-	  }
-	  
 	  @RequestMapping(value = "/setUserSportsById" , method = RequestMethod.POST)
 	  public ResponseEntity<SetUserSportsResponse> setUserSportsById(@RequestBody SetUserSportsRequest request) {
 		SetUserSportsResponse userSports = userService.setUserSports(request);  

@@ -22,14 +22,10 @@ public class UserService {
 	private UserRepository userRepository;
 	
 	@Autowired 
-	private SportRepository sportRepository;
-	
-	@Autowired 
 	private UserFriendsRepository userFriendsRepository;
 	
 	public User getUserByEmail(String email) {
 		User user = userRepository.findOneByEmail(email);
-		user.getFriend();
 		return user;
 	}
 	
@@ -59,18 +55,11 @@ public class UserService {
 	public List<UserFriends> getUserFriends(Integer userId){
 		return userFriendsRepository.findByUser(userId);
 	}
-	
-	public List<Sport> getUserSports(Long id) {
-		User user = userRepository.findOne(id);
-		return user.getSports();
-	}
 
 	public SetUserSportsResponse setUserSports(SetUserSportsRequest request) {
 		SetUserSportsResponse response = new SetUserSportsResponse();
 		User user = userRepository.findOne(request.getUserId());
-		user.setSports(request.getSports());
 		userRepository.saveAndFlush(user);
-		response.setSports(user.getSports());
 		return response;
 	}
 }

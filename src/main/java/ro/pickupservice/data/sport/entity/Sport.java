@@ -27,9 +27,9 @@ public class Sport implements Serializable {
 
 	private Integer id;
 	private String name;
-	private List<User> user;
+	//private List<User> user;
 		
-	@ManyToMany(fetch=FetchType.LAZY, mappedBy="sports")
+	/*//@ManyToMany(fetch=FetchType.LAZY, mappedBy="sports")
 	@JsonBackReference
 	public List<User> getUsers() {
 		return user;
@@ -37,7 +37,7 @@ public class Sport implements Serializable {
 
 	public void setUsers(List<User> users) {
 		this.user = users;
-	}
+	}*/
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)	
