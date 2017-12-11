@@ -27,7 +27,6 @@ public class Order implements Serializable {
 	private String pickUpLocation;
 	private String dropOffLocation;
 	private Date pickUpDate;
-	private Date dropOffDate;
 	private Boolean fragile;
 	private Float length;
 	private Float width;
@@ -35,7 +34,7 @@ public class Order implements Serializable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)	
-	@Column(name = "order_id", unique = true, nullable = false)
+	@Column(name = "id", unique = true, nullable = false)
 	public Long getOrder_id() {
 		return order_id;
 	}
@@ -79,14 +78,6 @@ public class Order implements Serializable {
 		this.pickUpDate = pickUpDate;
 	}
 
-	public Date getDropOffDate() {
-		return dropOffDate;
-	}
-
-	public void setDropOffDate(Date dropOffDate) {
-		this.dropOffDate = dropOffDate;
-	}
-
 	public Boolean getFragile() {
 		return fragile;
 	}
@@ -122,8 +113,8 @@ public class Order implements Serializable {
 	@Override
 	public String toString() {
 		return "Order [order_id=" + order_id + ", user=" + user + ", pickUpLocation=" + pickUpLocation
-				+ ", dropOffLocation=" + dropOffLocation + ", pickUpDate=" + pickUpDate + ", dropOffDate=" + dropOffDate
-				+ ", fragile=" + fragile + ", length=" + length + ", width=" + width + ", height=" + height + "]";
+				+ ", dropOffLocation=" + dropOffLocation + ", pickUpDate=" + pickUpDate +
+				", fragile=" + fragile + ", length=" + length + ", width=" + width + ", height=" + height + "]";
 	}
 	
 }
