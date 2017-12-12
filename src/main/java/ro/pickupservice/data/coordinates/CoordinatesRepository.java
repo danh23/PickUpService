@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import ro.pickupservice.data.coordinates.entity.Coordinates;
 
 @Repository
-public interface CoordinatesRepository extends JpaRepository<Coordinates, Integer>{
+public interface CoordinatesRepository extends JpaRepository<Coordinates, Long>{
 
 }

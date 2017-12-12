@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ro.pickupservice.controllers.location.bean.request.SetLocationRequest;
@@ -20,10 +21,15 @@ public class LocationController {
 	private LocationService locationService;
 	
 	@RequestMapping(value = "setLocation", method = RequestMethod.POST)
-	@Cacheable()
-	public ResponseEntity<LocationResponse> getLocation (SetLocationRequest request) {
-		LocationResponse response = locationService.getLocation(request); 
-		return new ResponseEntity<>(response, HttpStatus.OK);
+	public ResponseEntity<Long> setLocation (SetLocationRequest request) {
+		locationService.setLocation(request); 
+		return new ResponseEntity<>(request.getUser_id(), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "getLocation", method = RequestMethod.GET)
+	public ResponseEntity<LocationResponse> getLocation(@RequestParam String userId) {
+		LocationResponse locationResponse = locationService.getLocation(userId);
+		return new ResponseEntity<>(locationResponse, HttpStatus.OK);
 	}
 
 }
