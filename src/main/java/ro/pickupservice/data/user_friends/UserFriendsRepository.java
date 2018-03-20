@@ -11,5 +11,5 @@ import ro.pickupservice.data.user_friends.entity.UserFriendsPk;
 @Repository
 public interface UserFriendsRepository extends JpaRepository<UserFriends, UserFriendsPk> {
 
-	public List<UserFriends> findByUser(Integer userId);
+	public List<UserFriends> findByUser(Long userId);
 }

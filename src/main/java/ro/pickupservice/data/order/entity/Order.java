@@ -17,34 +17,40 @@ import javax.persistence.TemporalType;
 import ro.pickupservice.data.user.entity.User;
 
 @Entity
-@Table(name="ORDER")
+@Table(name="ORDERS")
 public class Order implements Serializable {
 
 	private static final long serialVersionUID = 4262495351450982647L;
-	
-	private Long order_id;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	private User user;
 	private String pickUpLocation;
+	private Float pickUpLatitude;
+	private Float pickUpLongitude;
 	private String dropOffLocation;
+	private Float dropOffLatitude;
+	private Float dropOffLongitude;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date pickUpDate;
 	private Boolean fragile;
 	private Float length;
 	private Float width;
 	private Float height;
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)	
-	@Column(name = "id", unique = true, nullable = false)
-	public Long getOrder_id() {
-		return order_id;
+	public Long getId() {
+		return id;
 	}
 
-	public void setOrder_id(Long order_id) {
-		this.order_id = order_id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	@ManyToOne
-    @JoinColumn(name = "user_id")
 	public User getUser() {
 		return user;
 	}
@@ -61,6 +67,22 @@ public class Order implements Serializable {
 		this.pickUpLocation = pickUpLocation;
 	}
 
+	public Float getPickUpLatitude() {
+		return pickUpLatitude;
+	}
+
+	public void setPickUpLatitude(Float pickUpLatitude) {
+		this.pickUpLatitude = pickUpLatitude;
+	}
+
+	public Float getPickUpLongitude() {
+		return pickUpLongitude;
+	}
+
+	public void setPickUpLongitude(Float pickUpLongitude) {
+		this.pickUpLongitude = pickUpLongitude;
+	}
+
 	public String getDropOffLocation() {
 		return dropOffLocation;
 	}
@@ -69,7 +91,22 @@ public class Order implements Serializable {
 		this.dropOffLocation = dropOffLocation;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
+	public Float getDropOffLatitude() {
+		return dropOffLatitude;
+	}
+
+	public void setDropOffLatitude(Float dropOffLatitude) {
+		this.dropOffLatitude = dropOffLatitude;
+	}
+
+	public Float getdropOffLongitude() {
+		return dropOffLongitude;
+	}
+
+	public void setPickUpdropOffLongitude(Float dropOffLongitude) {
+		this.dropOffLongitude = dropOffLongitude;
+	}
+
 	public Date getPickUpDate() {
 		return pickUpDate;
 	}
@@ -112,7 +149,7 @@ public class Order implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Order [order_id=" + order_id + ", user=" + user + ", pickUpLocation=" + pickUpLocation
+		return "Order [id=" + id + ", user=" + user + ", pickUpLocation=" + pickUpLocation
 				+ ", dropOffLocation=" + dropOffLocation + ", pickUpDate=" + pickUpDate +
 				", fragile=" + fragile + ", length=" + length + ", width=" + width + ", height=" + height + "]";
 	}

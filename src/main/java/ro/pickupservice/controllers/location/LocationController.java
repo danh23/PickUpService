@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import ro.pickupservice.controllers.location.bean.request.SetLocationRequest;
 import ro.pickupservice.controllers.location.bean.response.LocationResponse;
@@ -21,13 +18,13 @@ public class LocationController {
 	private LocationService locationService;
 	
 	@RequestMapping(value = "setLocation", method = RequestMethod.POST)
-	public ResponseEntity<Long> setLocation (SetLocationRequest request) {
+	public ResponseEntity<Long> setLocation (@RequestBody SetLocationRequest request) {
 		locationService.setLocation(request); 
-		return new ResponseEntity<>(request.getUser_id(), HttpStatus.OK);
+		return new ResponseEntity<>(request.getUserId(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "getLocation", method = RequestMethod.GET)
-	public ResponseEntity<LocationResponse> getLocation(@RequestParam String userId) {
+	@RequestMapping(value = "getLocation/{userId}", method = RequestMethod.GET)
+	public ResponseEntity<LocationResponse> getLocation(@PathVariable Long userId) {
 		LocationResponse locationResponse = locationService.getLocation(userId);
 		return new ResponseEntity<>(locationResponse, HttpStatus.OK);
 	}

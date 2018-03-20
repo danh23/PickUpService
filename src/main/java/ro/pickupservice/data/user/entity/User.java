@@ -3,16 +3,7 @@ package ro.pickupservice.data.user.entity;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import ro.pickupservice.data.coordinates.entity.Coordinates;
 import ro.pickupservice.data.order.entity.Order;
@@ -22,18 +13,26 @@ import ro.pickupservice.data.order.entity.Order;
 public class User implements Serializable{
 
 	private static final long serialVersionUID = -8787444391909479638L;
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 	private String username;
+
+	@Column(unique=true)
 	private String email;	
 	private String facebookId;	
 	private String firstName;
 	private String lastName;
 	private String city;
 	private String country;
-//	private List<Sport> sports;
 //	private List<User> friend;
+
+	@OneToOne
 	private Coordinates coordinates;
+
+	@OneToMany(mappedBy = "user")
 	private Set<Order> orders;
 	
 //	@ManyToMany(fetch=FetchType.LAZY)
@@ -47,28 +46,14 @@ public class User implements Serializable{
 //		this.friend = friend;
 //	}
 	
-	
-	@OneToOne(fetch=FetchType.LAZY)
+
 	public Coordinates getCoordinates() {
 		return coordinates;
 	}
 	public void setCoordinates(Coordinates coordinates) {
 		this.coordinates = coordinates;
 	}
-	
-//	@ManyToMany(fetch=FetchType.LAZY)
-//	@JoinTable(name="user_sports", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id")}, inverseJoinColumns = { @JoinColumn(name = "sport_id", referencedColumnName = "id")})
-//	@JsonBackReference
-//	public List<Sport> getSports() {
-//		return sports;
-//	}
-//	public void setSports(List<Sport> sports) {
-//		this.sports = sports;
-//	}
-	
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)	
-	@Column(name = "id", unique = true, nullable = false)
+
 	public Long getId() {
 		return id;
 	}
@@ -84,8 +69,7 @@ public class User implements Serializable{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	@Column(unique=true)
+
 	public String getEmail() {
 		return email;
 	}
@@ -133,8 +117,7 @@ public class User implements Serializable{
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+
 	public Set<Order> getOrders() {
 		return orders;
 	}

@@ -1,32 +1,32 @@
 package ro.pickupservice.data.coordinates.entity;
 
+import ro.pickupservice.data.user.entity.User;
+
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
-@Table(name="COORDINATES")
+@Table(name="coordinates")
 public class Coordinates implements Serializable{
 	
 	private static final long serialVersionUID = -4773516225813189464L;
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 	private Float latitude;
 	private Float longitude;
 
+	@OneToOne
+	private User user;
+
 	public Coordinates() {
 		super();
 	}
-	
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)	
-	@Column(name = "id", unique = true, nullable = false)
+
 	public Long getId() {
 		return id;
 	}
@@ -45,7 +45,15 @@ public class Coordinates implements Serializable{
 	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
-	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
 		return "Coordinates [id=" + id + ", latitude=" + latitude + ", longitude=" + longitude + "]";

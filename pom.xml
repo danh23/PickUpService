@@ -48,15 +48,20 @@
 			<artifactId>json</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+<!--		<dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>2.6.1</version>
-        </dependency>	
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+        </dependency>	-->
+		<!--<dependency>-->
+			<!--<groupId>mysql</groupId>-->
+			<!--<artifactId>mysql-connector-java</artifactId>-->
+			<!--<scope>runtime</scope>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -86,15 +91,32 @@
 		  <artifactId>google-api-client</artifactId>
 		  <version>1.23.0</version>
 		</dependency>
+		<!--<dependency>-->
+		    <!--<groupId>redis.clients</groupId>-->
+		    <!--<artifactId>jedis</artifactId>-->
+		    <!--<version>2.8.1</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+	        <!--<groupId>org.springframework.data</groupId>-->
+	        <!--<artifactId>spring-data-redis</artifactId>-->
+    	<!--</dependency>-->
+
+		<!-- Swagger -->
 		<dependency>
-		    <groupId>redis.clients</groupId>
-		    <artifactId>jedis</artifactId>
-		    <version>2.8.1</version>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.1</version>
 		</dependency>
 		<dependency>
-	        <groupId>org.springframework.data</groupId>
-	        <artifactId>spring-data-redis</artifactId>
-    	</dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-data-rest</artifactId>
+			<version>2.6.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -6,16 +6,16 @@ public class SetLocationRequest extends BaseRequest{
 
 	private static final long serialVersionUID = -795338880421504304L;
 	
-	private Long user_id;
+	private Long userId;
 	private Float latitude;
 	private Float longitude;
 
-	public Long getUser_id() {
-		return user_id;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUserId(Long user_id) {
+		this.userId = user_id;
 	}
 
 	public Float getLatitude() {
@@ -36,7 +36,7 @@ public class SetLocationRequest extends BaseRequest{
 
 	@Override
 	public String toString() {
-		return "SetLocationRequest [user_id=" + user_id + "]";
+		return "SetLocationRequest [user_id=" + userId + "]";
 	}
 	
 }

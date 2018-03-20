@@ -1,17 +1,13 @@
 package ro.pickupservice.config;
 
 import org.springframework.cache.annotation.CachingConfigurerSupport;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheManager;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
 
 
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
-	
-    @Bean
+
+    /*@Bean
     public JedisConnectionFactory jedisConnectionFactory()
     {
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
@@ -36,5 +32,5 @@ public class RedisConfig extends CachingConfigurerSupport {
         redisCacheManager.setLoadRemoteCachesOnStartup(false);
         redisCacheManager.setUsePrefix(true);
         return redisCacheManager;
-    }
+    }*/
 }
