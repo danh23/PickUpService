@@ -99,11 +99,11 @@ public class Order implements Serializable {
 		this.dropOffLatitude = dropOffLatitude;
 	}
 
-	public Float getdropOffLongitude() {
+	public Float getDropOffLongitude() {
 		return dropOffLongitude;
 	}
 
-	public void setPickUpdropOffLongitude(Float dropOffLongitude) {
+	public void setDropOffLongitude(Float dropOffLongitude) {
 		this.dropOffLongitude = dropOffLongitude;
 	}
 
@@ -153,5 +153,4 @@ public class Order implements Serializable {
 				+ ", dropOffLocation=" + dropOffLocation + ", pickUpDate=" + pickUpDate +
 				", fragile=" + fragile + ", length=" + length + ", width=" + width + ", height=" + height + "]";
 	}
-	
 }

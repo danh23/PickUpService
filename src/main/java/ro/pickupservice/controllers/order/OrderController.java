@@ -1,10 +1,5 @@
 package ro.pickupservice.controllers.order;
 
-import java.security.Principal;
-
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import ro.pickupservice.controllers.order.bean.request.CreateOrderRequest;
 import ro.pickupservice.controllers.order.bean.response.CreateOrderResponse;
-import ro.pickupservice.controllers.order.bean.response.OrderDto;
+import ro.pickupservice.controllers.order.bean.response.Order;
 import ro.pickupservice.services.order.OrderService;
 
 @RestController
@@ -29,8 +24,8 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/getOrderById/{orderId}", method = RequestMethod.POST)
-	public ResponseEntity<OrderDto> getOrderById(@PathVariable Long orderId) {
-		OrderDto response= orderService.getOrderById(orderId);
+	public ResponseEntity<Order> getOrderById(@PathVariable Long orderId) {
+		Order response= orderService.getOrderById(orderId);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

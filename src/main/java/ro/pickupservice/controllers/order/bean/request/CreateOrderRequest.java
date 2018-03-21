@@ -9,26 +9,26 @@ public class CreateOrderRequest implements Serializable{
 	
 	private static final long serialVersionUID = -6513517704620169543L;
 	
-	private User user;
+	private Long userId;
 	private String pickUpLocation;
+	private Float pickUpLatitude;
+	private Float pickUpLongitude;
 	private String dropOffLocation;
+	private Float dropOffLatitude;
+	private Float dropOffLongitude;
 	private Date pickUpDate;
 	private Date dropOffDate;
 	private Boolean fragile;
 	private Float length;
 	private Float width;
 	private Float height;
-	
-	public CreateOrderRequest() {
-		super();
+
+	public Long getUserId() {
+		return userId;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getPickUpLocation() {
@@ -39,12 +39,44 @@ public class CreateOrderRequest implements Serializable{
 		this.pickUpLocation = pickUpLocation;
 	}
 
+	public Float getPickUpLatitude() {
+		return pickUpLatitude;
+	}
+
+	public void setPickUpLatitude(Float pickUpLatitude) {
+		this.pickUpLatitude = pickUpLatitude;
+	}
+
+	public Float getPickUpLongitude() {
+		return pickUpLongitude;
+	}
+
+	public void setPickUpLongitude(Float pickUpLongitude) {
+		this.pickUpLongitude = pickUpLongitude;
+	}
+
 	public String getDropOffLocation() {
 		return dropOffLocation;
 	}
 
 	public void setDropOffLocation(String dropOffLocation) {
 		this.dropOffLocation = dropOffLocation;
+	}
+
+	public Float getDropOffLatitude() {
+		return dropOffLatitude;
+	}
+
+	public void setDropOffLatitude(Float dropOffLatitude) {
+		this.dropOffLatitude = dropOffLatitude;
+	}
+
+	public Float getDropOffLongitude() {
+		return dropOffLongitude;
+	}
+
+	public void setDropOffLongitude(Float dropOffLongitude) {
+		this.dropOffLongitude = dropOffLongitude;
 	}
 
 	public Date getPickUpDate() {
@@ -94,5 +126,4 @@ public class CreateOrderRequest implements Serializable{
 	public void setHeight(Float height) {
 		this.height = height;
 	}
-
 }
