@@ -1,8 +1,11 @@
 package ro.pickupservice.controllers.order.bean.request;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.springframework.security.oauth2.common.util.JsonDateDeserializer;
 import ro.pickupservice.data.user.entity.User;
 
 public class CreateOrderRequest implements Serializable{
@@ -16,8 +19,8 @@ public class CreateOrderRequest implements Serializable{
 	private String dropOffLocation;
 	private Float dropOffLatitude;
 	private Float dropOffLongitude;
-	private Date pickUpDate;
-	private Date dropOffDate;
+	private LocalDate pickUpDate;
+	private LocalDate dropOffDate;
 	private Boolean fragile;
 	private Float length;
 	private Float width;
@@ -79,19 +82,19 @@ public class CreateOrderRequest implements Serializable{
 		this.dropOffLongitude = dropOffLongitude;
 	}
 
-	public Date getPickUpDate() {
+	public LocalDate getPickUpDate() {
 		return pickUpDate;
 	}
 
-	public void setPickUpDate(Date pickUpDate) {
+	public void setPickUpDate(LocalDate pickUpDate) {
 		this.pickUpDate = pickUpDate;
 	}
 
-	public Date getDropOffDate() {
+	public LocalDate getDropOffDate() {
 		return dropOffDate;
 	}
 
-	public void setDropOffDate(Date dropOffDate) {
+	public void setDropOffDate(LocalDate dropOffDate) {
 		this.dropOffDate = dropOffDate;
 	}
 

@@ -1,5 +1,8 @@
 package ro.pickupservice.controllers.order.bean.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.tomcat.jni.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 import ro.pickupservice.data.user.entity.User;
 
 import javax.persistence.JoinColumn;
@@ -7,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class OrderDto implements Serializable {
@@ -18,7 +22,10 @@ public class OrderDto implements Serializable {
     private String dropOffLocation;
     private Float dropOffLatitude;
     private Float dropOffLongitude;
-    private Date pickUpDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "EET")
+    private LocalDate dropOffDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "EET")
+    private LocalDate pickUpDate;
     private Boolean fragile;
     private Float length;
     private Float width;
@@ -80,11 +87,19 @@ public class OrderDto implements Serializable {
         this.dropOffLongitude = dropOffLongitude;
     }
 
-    public Date getPickUpDate() {
+    public LocalDate getDropOffDate() {
+        return dropOffDate;
+    }
+
+    public void setDropOffDate(LocalDate dropOffDate) {
+        this.dropOffDate = dropOffDate;
+    }
+
+    public LocalDate getPickUpDate() {
         return pickUpDate;
     }
 
-    public void setPickUpDate(Date pickUpDate) {
+    public void setPickUpDate(LocalDate pickUpDate) {
         this.pickUpDate = pickUpDate;
     }
 

@@ -1,6 +1,7 @@
 package ro.pickupservice.data.order.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -36,8 +37,8 @@ public class Order implements Serializable {
 	private String dropOffLocation;
 	private Float dropOffLatitude;
 	private Float dropOffLongitude;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date pickUpDate;
+	private LocalDate dropOffDate;
+	private LocalDate pickUpDate;
 	private Boolean fragile;
 	private Float length;
 	private Float width;
@@ -107,11 +108,19 @@ public class Order implements Serializable {
 		this.dropOffLongitude = dropOffLongitude;
 	}
 
-	public Date getPickUpDate() {
+	public LocalDate getDropOffDate() {
+		return dropOffDate;
+	}
+
+	public void setDropOffDate(LocalDate dropOffDate) {
+		this.dropOffDate = dropOffDate;
+	}
+
+	public LocalDate getPickUpDate() {
 		return pickUpDate;
 	}
 
-	public void setPickUpDate(Date pickUpDate) {
+	public void setPickUpDate(LocalDate pickUpDate) {
 		this.pickUpDate = pickUpDate;
 	}
 
