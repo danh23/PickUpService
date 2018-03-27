@@ -29,6 +29,6 @@ public class OrderProvider {
         Float minLatitude = latitude - offset;
         Float maxLongitude = longitude + offset;
         Float minLongitude = longitude - offset;
-        return orderRepository.findAllByPickUpLatitudeLessThanEqualAndPickUpLatitudeGreaterThanEqualAndPickUpLongitudeLessThanEqualAndPickUpLongitudeGreaterThanEqual(maxLatitude, minLatitude, maxLongitude, minLongitude);
+        return orderRepository.findAllInArea(minLatitude, maxLatitude, minLongitude, maxLongitude);//orderRepository.findAllByPickUpLatitudeLessThanEqualAndPickUpLatitudeGreaterThanEqualAndPickUpLongitudeLessThanEqualAndPickUpLongitudeGreaterThanEqual(maxLatitude, minLatitude, maxLongitude, minLongitude);
     }
 }

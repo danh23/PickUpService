@@ -1,9 +1,9 @@
 package ro.pickupservice.data.driverSettings.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import ro.pickupservice.bean.Location;
+import ro.pickupservice.data.carType.entity.CarType;
+
+import javax.persistence.*;
 
 @Entity
 public class DriverSettings {
@@ -11,12 +11,11 @@ public class DriverSettings {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Float latitude;
-    private Float longitude;
-    private Float width;
-    private Float height;
-    private Float length;
+    @Embedded
+    private Location location;
     private Boolean takeFragile;
+    @ManyToOne
+    private CarType carType;
 
     public Long getId() {
         return id;
@@ -26,44 +25,12 @@ public class DriverSettings {
         this.id = id;
     }
 
-    public Float getLatitude() {
-        return latitude;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLatitude(Float latitude) {
-        this.latitude = latitude;
-    }
-
-    public Float getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Float longitude) {
-        this.longitude = longitude;
-    }
-
-    public Float getWidth() {
-        return width;
-    }
-
-    public void setWidth(Float width) {
-        this.width = width;
-    }
-
-    public Float getHeight() {
-        return height;
-    }
-
-    public void setHeight(Float height) {
-        this.height = height;
-    }
-
-    public Float getLength() {
-        return length;
-    }
-
-    public void setLength(Float length) {
-        this.length = length;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public Boolean getTakeFragile() {
@@ -72,5 +39,13 @@ public class DriverSettings {
 
     public void setTakeFragile(Boolean takeFragile) {
         this.takeFragile = takeFragile;
+    }
+
+    public CarType getCarType() {
+        return carType;
+    }
+
+    public void setCarType(CarType carType) {
+        this.carType = carType;
     }
 }

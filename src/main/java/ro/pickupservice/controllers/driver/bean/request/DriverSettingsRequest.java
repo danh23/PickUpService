@@ -3,12 +3,16 @@ package ro.pickupservice.controllers.driver.bean.request;
 import ro.pickupservice.bean.Dimensions;
 import ro.pickupservice.bean.Location;
 
-public class DriverSettings {
+import javax.validation.constraints.NotNull;
 
+public class DriverSettingsRequest {
+
+    @NotNull
     private Long id;
     private Boolean takeFragile;
-    private Dimensions dimensions;
     private Location location;
+    @NotNull
+    private Long carTypeId;
 
     public Long getId() {
         return id;
@@ -26,19 +30,19 @@ public class DriverSettings {
         this.takeFragile = takeFragile;
     }
 
-    public Dimensions getDimensions() {
-        return dimensions;
-    }
-
-    public void setDimensions(Dimensions dimensions) {
-        this.dimensions = dimensions;
-    }
-
     public Location getLocation() {
         return location;
     }
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public Long getCarTypeId() {
+        return carTypeId;
+    }
+
+    public void setCarTypeId(Long carTypeId) {
+        this.carTypeId = carTypeId;
     }
 }

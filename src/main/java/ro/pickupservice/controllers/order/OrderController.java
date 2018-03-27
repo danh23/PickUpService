@@ -9,6 +9,7 @@ import ro.pickupservice.controllers.order.bean.request.CreateOrderRequest;
 import ro.pickupservice.controllers.order.bean.request.GetOrdersInAreaRequest;
 import ro.pickupservice.controllers.order.bean.response.CreateOrderResponse;
 import ro.pickupservice.controllers.order.bean.response.OrderDto;
+import ro.pickupservice.controllers.order.bean.response.OrderSummary;
 import ro.pickupservice.services.order.OrderService;
 
 import java.util.List;
@@ -34,13 +35,13 @@ public class OrderController {
 
 	@RequestMapping(value = "/getOrdersByUserId/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<List<OrderDto>> getOrdersByUserId(@PathVariable Long userId) {
-		List<OrderDto> response = orderService.getOrderByUserId(userId);
+		List<OrderDto> response = orderService.getOrdersByUserId(userId);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/getOrdersInArea", method = RequestMethod.POST)
-	public ResponseEntity<List<OrderDto>> getOrdersInArea(@RequestBody GetOrdersInAreaRequest request) {
-		List<OrderDto> response = orderService.getOrdersInArea(request);
+	public ResponseEntity<List<OrderSummary>> getOrdersInArea(@RequestBody GetOrdersInAreaRequest request) {
+		List<OrderSummary> response = orderService.getOrdersInArea(request);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

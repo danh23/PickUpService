@@ -1,24 +1,20 @@
 package ro.pickupservice.controllers.order.bean.request;
 
+import ro.pickupservice.bean.Location;
+
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
-
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import org.springframework.security.oauth2.common.util.JsonDateDeserializer;
-import ro.pickupservice.data.user.entity.User;
 
 public class CreateOrderRequest implements Serializable{
 	
 	private static final long serialVersionUID = -6513517704620169543L;
 	
 	private Long userId;
-	private String pickUpLocation;
-	private Float pickUpLatitude;
-	private Float pickUpLongitude;
-	private String dropOffLocation;
-	private Float dropOffLatitude;
-	private Float dropOffLongitude;
+	private String title;
+	private String pickUpAddress;
+	private Location pickUpLocation;
+	private String dropOffAddress;
+	private Location dropOffLocation;
 	private LocalDate pickUpDate;
 	private LocalDate dropOffDate;
 	private Boolean fragile;
@@ -34,52 +30,44 @@ public class CreateOrderRequest implements Serializable{
 		this.userId = userId;
 	}
 
-	public String getPickUpLocation() {
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getPickUpAddress() {
+		return pickUpAddress;
+	}
+
+	public void setPickUpAddress(String pickUpAddress) {
+		this.pickUpAddress = pickUpAddress;
+	}
+
+	public Location getPickUpLocation() {
 		return pickUpLocation;
 	}
 
-	public void setPickUpLocation(String pickUpLocation) {
+	public void setPickUpLocation(Location pickUpLocation) {
 		this.pickUpLocation = pickUpLocation;
 	}
 
-	public Float getPickUpLatitude() {
-		return pickUpLatitude;
+	public String getDropOffAddress() {
+		return dropOffAddress;
 	}
 
-	public void setPickUpLatitude(Float pickUpLatitude) {
-		this.pickUpLatitude = pickUpLatitude;
+	public void setDropOffAddress(String dropOffAddress) {
+		this.dropOffAddress = dropOffAddress;
 	}
 
-	public Float getPickUpLongitude() {
-		return pickUpLongitude;
-	}
-
-	public void setPickUpLongitude(Float pickUpLongitude) {
-		this.pickUpLongitude = pickUpLongitude;
-	}
-
-	public String getDropOffLocation() {
+	public Location getDropOffLocation() {
 		return dropOffLocation;
 	}
 
-	public void setDropOffLocation(String dropOffLocation) {
+	public void setDropOffLocation(Location dropOffLocation) {
 		this.dropOffLocation = dropOffLocation;
-	}
-
-	public Float getDropOffLatitude() {
-		return dropOffLatitude;
-	}
-
-	public void setDropOffLatitude(Float dropOffLatitude) {
-		this.dropOffLatitude = dropOffLatitude;
-	}
-
-	public Float getDropOffLongitude() {
-		return dropOffLongitude;
-	}
-
-	public void setDropOffLongitude(Float dropOffLongitude) {
-		this.dropOffLongitude = dropOffLongitude;
 	}
 
 	public LocalDate getPickUpDate() {

@@ -2,19 +2,10 @@ package ro.pickupservice.data.order.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
+import ro.pickupservice.bean.Location;
 import ro.pickupservice.data.user.entity.User;
 
 @Entity
@@ -31,12 +22,21 @@ public class Order implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	private String pickUpLocation;
-	private Float pickUpLatitude;
-	private Float pickUpLongitude;
-	private String dropOffLocation;
-	private Float dropOffLatitude;
-	private Float dropOffLongitude;
+	private String title;
+	private String pickUpAddress;
+	@Embedded
+	@AttributeOverrides({
+			@AttributeOverride(name="latitude", column=@Column(name="pickUpLatitude")),
+			@AttributeOverride(name="longitude", column=@Column(name="pickUpLongitude"))
+	})
+	private Location pickUpLocation;
+	private String dropOffAddress;
+	@Embedded
+	@AttributeOverrides({
+			@AttributeOverride(name="latitude", column=@Column(name="dropOffLatitude")),
+			@AttributeOverride(name="longitude", column=@Column(name="dropOffLongitude"))
+	})
+	private Location dropOffLocation;
 	private LocalDate dropOffDate;
 	private LocalDate pickUpDate;
 	private Boolean fragile;
@@ -60,52 +60,44 @@ public class Order implements Serializable {
 		this.user = user;
 	}
 
-	public String getPickUpLocation() {
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getPickUpAddress() {
+		return pickUpAddress;
+	}
+
+	public void setPickUpAddress(String pickUpAddress) {
+		this.pickUpAddress = pickUpAddress;
+	}
+
+	public Location getPickUpLocation() {
 		return pickUpLocation;
 	}
 
-	public void setPickUpLocation(String pickUpLocation) {
+	public void setPickUpLocation(Location pickUpLocation) {
 		this.pickUpLocation = pickUpLocation;
 	}
 
-	public Float getPickUpLatitude() {
-		return pickUpLatitude;
+	public String getDropOffAddress() {
+		return dropOffAddress;
 	}
 
-	public void setPickUpLatitude(Float pickUpLatitude) {
-		this.pickUpLatitude = pickUpLatitude;
+	public void setDropOffAddress(String dropOffAddress) {
+		this.dropOffAddress = dropOffAddress;
 	}
 
-	public Float getPickUpLongitude() {
-		return pickUpLongitude;
-	}
-
-	public void setPickUpLongitude(Float pickUpLongitude) {
-		this.pickUpLongitude = pickUpLongitude;
-	}
-
-	public String getDropOffLocation() {
+	public Location getDropOffLocation() {
 		return dropOffLocation;
 	}
 
-	public void setDropOffLocation(String dropOffLocation) {
+	public void setDropOffLocation(Location dropOffLocation) {
 		this.dropOffLocation = dropOffLocation;
-	}
-
-	public Float getDropOffLatitude() {
-		return dropOffLatitude;
-	}
-
-	public void setDropOffLatitude(Float dropOffLatitude) {
-		this.dropOffLatitude = dropOffLatitude;
-	}
-
-	public Float getDropOffLongitude() {
-		return dropOffLongitude;
-	}
-
-	public void setDropOffLongitude(Float dropOffLongitude) {
-		this.dropOffLongitude = dropOffLongitude;
 	}
 
 	public LocalDate getDropOffDate() {
@@ -158,8 +150,8 @@ public class Order implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", user=" + user + ", pickUpLocation=" + pickUpLocation
-				+ ", dropOffLocation=" + dropOffLocation + ", pickUpDate=" + pickUpDate +
+		return "Order [id=" + id + ", user=" + user + ", pickUpAddress=" + pickUpAddress
+				+ ", dropOffAddress=" + dropOffAddress + ", pickUpDate=" + pickUpDate +
 				", fragile=" + fragile + ", length=" + length + ", width=" + width + ", height=" + height + "]";
 	}
 }

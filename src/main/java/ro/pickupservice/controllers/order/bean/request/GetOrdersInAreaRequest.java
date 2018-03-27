@@ -1,25 +1,18 @@
 package ro.pickupservice.controllers.order.bean.request;
 
+import ro.pickupservice.bean.Location;
+
 public class GetOrdersInAreaRequest {
 
-    private Float latitude;
-    private Float longitude;
+    private Location location;
     private Float offset;
 
-    public Float getLatitude() {
-        return latitude;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLatitude(Float latitude) {
-        this.latitude = latitude;
-    }
-
-    public Float getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Float longitude) {
-        this.longitude = longitude;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public Float getOffset() {

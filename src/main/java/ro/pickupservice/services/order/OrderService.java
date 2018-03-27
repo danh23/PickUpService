@@ -2,11 +2,13 @@ package ro.pickupservice.services.order;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.pickupservice.bean.Location;
 import ro.pickupservice.config.auth.AuthService;
 import ro.pickupservice.controllers.order.bean.request.CreateOrderRequest;
 import ro.pickupservice.controllers.order.bean.request.GetOrdersInAreaRequest;
 import ro.pickupservice.controllers.order.bean.response.CreateOrderResponse;
 import ro.pickupservice.controllers.order.bean.response.OrderDto;
+import ro.pickupservice.controllers.order.bean.response.OrderSummary;
 import ro.pickupservice.data.order.OrderMapper;
 import ro.pickupservice.data.order.OrderProvider;
 import ro.pickupservice.data.order.entity.Order;
@@ -54,18 +56,17 @@ public class OrderService {
         return orderDto;
     }
 
-    public List<OrderDto> getOrderByUserId(Long userId) {
+    public List<OrderDto> getOrdersByUserId(Long userId) {
         List<Order> orders = orderProvider.getOrdersByUserId(userId);
-        List<OrderDto> orderDtos = OrderMapper.mapOrdersToOrdersDto(orders);
+        List<OrderDto> orderDtos = OrderMapper.mapOrdersToOrderDtoList(orders);
         return orderDtos;
     }
 
-    public List<OrderDto> getOrdersInArea(GetOrdersInAreaRequest request) {
-        Float latitude = request.getLatitude();
-        Float longitude = request.getLongitude();
+    public List<OrderSummary> getOrdersInArea(GetOrdersInAreaRequest request) {
+        Location location = request.getLocation();
         Float offset = request.getOffset();
-        List<Order> orders = orderProvider.getOrdersInArea(latitude, longitude, offset);
-        List<OrderDto> orderDtos = OrderMapper.mapOrdersToOrdersDto(orders);
+        List<Order> orders = orderProvider.getOrdersInArea(location.getLatitude(), location.getLongitude(), offset);
+        List<OrderSummary> orderDtos = OrderMapper.mapOrdersToOrderSummaryList(orders);
         return orderDtos;
     }
 }
