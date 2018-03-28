@@ -1,6 +1,7 @@
 package ro.pickupservice.controllers.order.bean.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import ro.pickupservice.bean.Dimensions;
 import ro.pickupservice.bean.Location;
 
 import java.io.Serializable;
@@ -19,9 +20,8 @@ public class OrderDto implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "EET")
     private LocalDate pickUpDate;
     private Boolean fragile;
-    private Float length;
-    private Float width;
-    private Float height;
+    private Dimensions dimensions;
+    private Float weight;
 
     public Long getId() {
         return id;
@@ -95,27 +95,19 @@ public class OrderDto implements Serializable {
         this.fragile = fragile;
     }
 
-    public Float getLength() {
-        return length;
+    public Dimensions getDimensions() {
+        return dimensions;
     }
 
-    public void setLength(Float length) {
-        this.length = length;
+    public Float getWeight() {
+        return weight;
     }
 
-    public Float getWidth() {
-        return width;
+    public void setWeight(Float weight) {
+        this.weight = weight;
     }
 
-    public void setWidth(Float width) {
-        this.width = width;
-    }
-
-    public Float getHeight() {
-        return height;
-    }
-
-    public void setHeight(Float height) {
-        this.height = height;
+    public void setDimensions(Dimensions dimensions) {
+        this.dimensions = dimensions;
     }
 }

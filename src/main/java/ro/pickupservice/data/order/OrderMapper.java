@@ -18,13 +18,12 @@ public class OrderMapper {
         orderDto.setDropOffAddress(order.getDropOffAddress());
         orderDto.setDropOffDate(order.getDropOffDate());
         orderDto.setFragile(order.getFragile());
-        orderDto.setHeight(order.getHeight());
+        orderDto.setDimensions(order.getDimensions());
+        orderDto.setWeight(order.getWeight());
         orderDto.setId(order.getId());
-        orderDto.setLength(order.getLength());
         orderDto.setPickUpDate(order.getPickUpDate());
         orderDto.setPickUpAddress(order.getPickUpAddress());
         orderDto.setPickUpLocation(order.getPickUpLocation());
-        orderDto.setWidth(order.getWidth());
         return orderDto;
     }
 
@@ -36,12 +35,11 @@ public class OrderMapper {
         order.setDropOffAddress(request.getDropOffAddress());
         order.setDropOffDate(request.getDropOffDate());
         order.setFragile(request.getFragile());
-        order.setHeight(request.getHeight());
-        order.setLength(request.getLength());
         order.setPickUpDate(request.getPickUpDate());
         order.setPickUpAddress(request.getPickUpAddress());
         order.setPickUpLocation(request.getPickUpLocation());
-        order.setWidth(request.getWidth());
+        order.setDimensions(request.getDimensions());
+        order.setWeight(request.getWeight());
         return order;
     }
 

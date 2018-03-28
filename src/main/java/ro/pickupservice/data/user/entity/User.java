@@ -5,7 +5,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import ro.pickupservice.data.coordinates.entity.Coordinates;
+import ro.pickupservice.data.location.entity.Location;
 import ro.pickupservice.data.order.entity.Order;
 
 @Entity
@@ -30,7 +30,7 @@ public class User implements Serializable{
 //	private List<User> friend;
 
 	@OneToOne
-	private Coordinates coordinates;
+	private Location location;
 
 	@OneToMany(mappedBy = "user")
 	private Set<Order> orders;
@@ -45,13 +45,14 @@ public class User implements Serializable{
 //	public void setFriend(List<User> friend) {
 //		this.friend = friend;
 //	}
-	
 
-	public Coordinates getCoordinates() {
-		return coordinates;
+
+	public Location getLocation() {
+		return location;
 	}
-	public void setCoordinates(Coordinates coordinates) {
-		this.coordinates = coordinates;
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 	public Long getId() {

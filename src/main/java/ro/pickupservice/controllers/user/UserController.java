@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ro.pickupservice.controllers.user.bean.request.CreateUserRequest;
 import ro.pickupservice.controllers.user.bean.request.GetNearbyUsersRequest;
 import ro.pickupservice.controllers.user.bean.response.GetNearbyUsersResponse;
 import ro.pickupservice.data.user.entity.User;
@@ -26,6 +27,12 @@ public class UserController {
         return new ResponseEntity(principal, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/getUserById/{userId}", method = RequestMethod.POST)
+    public ResponseEntity<User> getUserById(@RequestBody Long userId) {
+        User user = userService.getUserById(userId);
+        return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/getUserByEmail", method = RequestMethod.POST)
     public ResponseEntity<User> getUserByEmail(@RequestBody String email) {
         User user = userService.getUserByEmail(email);
@@ -44,10 +51,10 @@ public class UserController {
         return new ResponseEntity<List<User>>(userList, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/setUser", method = RequestMethod.POST)
-    public ResponseEntity<User> setUser(@RequestBody User user) throws CustomException {
-        User userResponse = userService.setUser(user);
-        return new ResponseEntity<User>(userResponse, HttpStatus.OK);
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public ResponseEntity<Long> createUser(@RequestBody CreateUserRequest request) throws CustomException {
+        Long response = userService.setUser(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getNearbyUsers", method = RequestMethod.POST)

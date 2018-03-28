@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import ro.pickupservice.controllers.location.bean.request.SetLocationRequest;
 import ro.pickupservice.controllers.location.bean.response.LocationResponse;
-import ro.pickupservice.data.coordinates.CoordinatesRepository;
-import ro.pickupservice.data.coordinates.entity.Coordinates;
+import ro.pickupservice.data.location.LocationRepository;
+import ro.pickupservice.data.location.entity.Location;
 import ro.pickupservice.data.user.UserRepository;
 import ro.pickupservice.data.user.entity.User;
 import ro.pickupservice.services.user.UserService;
@@ -19,7 +19,7 @@ import ro.pickupservice.services.user.UserService;
 public class LocationService {
 	
 	@Autowired
-	private CoordinatesRepository coordinatesRepository;
+	private LocationRepository locationRepository;
 
 	@Autowired
 	private UserService userService;
@@ -31,30 +31,30 @@ public class LocationService {
 	public void setLocation(SetLocationRequest request) {
 		User user = userService.getUserById(request.getUserId());
 
-		Coordinates coordinates = getCoordinates(request.getUserId());
-		if(null == coordinates){
-			coordinates = new Coordinates();
+		Location location = getCoordinates(request.getUserId());
+		if(null == location){
+			location = new Location();
 		}
-		coordinates.setUser(user);
-		coordinates.setLatitude(request.getLatitude());
-		coordinates.setLongitude(request.getLongitude());
-		user.setCoordinates(coordinates);
-		coordinatesRepository.saveAndFlush(coordinates);
+		location.setUser(user);
+		location.setLatitude(request.getLatitude());
+		location.setLongitude(request.getLongitude());
+		user.setLocation(location);
+		locationRepository.saveAndFlush(location);
 		userRepository.saveAndFlush(user);
 	}
 	
 
 	public LocationResponse getLocation(Long userId) {
 		LocationResponse response = new LocationResponse();
-		Coordinates coordinates = getCoordinates(userId);
+		Location coordinates = getCoordinates(userId);
 		response.setLatitude(coordinates.getLatitude());
 		response.setLongitude(coordinates.getLongitude());
 		return response;
 	}
 
 	@Cacheable
-	private Coordinates getCoordinates(Long userId){
-		return coordinatesRepository.findByUserId(userId);
+	private Location getCoordinates(Long userId){
+		return locationRepository.findByUserId(userId);
 	}
 
 }

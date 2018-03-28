@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 
+import ro.pickupservice.bean.Dimensions;
 import ro.pickupservice.bean.Location;
 import ro.pickupservice.data.user.entity.User;
 
@@ -40,9 +41,9 @@ public class Order implements Serializable {
 	private LocalDate dropOffDate;
 	private LocalDate pickUpDate;
 	private Boolean fragile;
-	private Float length;
-	private Float width;
-	private Float height;
+	@Embedded
+	private Dimensions dimensions;
+	private Float weight;
 
 	public Long getId() {
 		return id;
@@ -124,34 +125,37 @@ public class Order implements Serializable {
 		this.fragile = fragile;
 	}
 
-	public Float getLength() {
-		return length;
+	public Dimensions getDimensions() {
+		return dimensions;
 	}
 
-	public void setLength(Float length) {
-		this.length = length;
+	public void setDimensions(Dimensions dimensions) {
+		this.dimensions = dimensions;
 	}
 
-	public Float getWidth() {
-		return width;
+	public Float getWeight() {
+		return weight;
 	}
 
-	public void setWidth(Float width) {
-		this.width = width;
-	}
-
-	public Float getHeight() {
-		return height;
-	}
-
-	public void setHeight(Float height) {
-		this.height = height;
+	public void setWeight(Float weight) {
+		this.weight = weight;
 	}
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", user=" + user + ", pickUpAddress=" + pickUpAddress
-				+ ", dropOffAddress=" + dropOffAddress + ", pickUpDate=" + pickUpDate +
-				", fragile=" + fragile + ", length=" + length + ", width=" + width + ", height=" + height + "]";
+		return "Order{" +
+				"id=" + id +
+				", user=" + user +
+				", title='" + title + '\'' +
+				", pickUpAddress='" + pickUpAddress + '\'' +
+				", pickUpLocation=" + pickUpLocation +
+				", dropOffAddress='" + dropOffAddress + '\'' +
+				", dropOffLocation=" + dropOffLocation +
+				", dropOffDate=" + dropOffDate +
+				", pickUpDate=" + pickUpDate +
+				", fragile=" + fragile +
+				", dimensions=" + dimensions +
+				", weight=" + weight +
+				'}';
 	}
 }

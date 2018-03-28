@@ -2,6 +2,9 @@ package ro.pickupservice.services.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.pickupservice.controllers.user.bean.request.CreateUserRequest;
+import ro.pickupservice.data.user.UserMapper;
+import ro.pickupservice.data.user.UserProvider;
 import ro.pickupservice.data.user.UserRepository;
 import ro.pickupservice.data.user.entity.User;
 import ro.pickupservice.data.user_friends.UserFriendsRepository;
@@ -14,41 +17,44 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserProvider userProvider;
 
     @Autowired
     private UserFriendsRepository userFriendsRepository;
 
     public User getUserById(Long id){
-        return userRepository.findOne(id);
-    }
-
-    public User getUserByEmail(String email) {
-        User user = userRepository.findOneByEmail(email);
+        User user = userProvider.findUserById(id);
+        if(user == null){
+            throw new CustomException(2, "Userul nu exista");
+        }
         return user;
     }
 
-    public User setUser(User user) {
+    public User getUserByEmail(String email) {
+        User user = userProvider.findOneByEmail(email);
+        if(user == null){
+            throw new CustomException(2, "Userul nu exista");
+        }
+        return user;
+    }
+
+    public Long setUser(CreateUserRequest request) {
         try {
-            User dbUser = userRepository.findOneByEmail(user.getEmail());
-            if (dbUser != null) {
-                dbUser.setCity(user.getCity());
-                dbUser.setCountry(user.getCountry());
-                dbUser.setEmail(user.getEmail());
-                dbUser.setFacebookId(user.getFacebookId());
-                dbUser.setFirstName(user.getFirstName());
-                dbUser.setLastName(user.getLastName());
-                dbUser.setUsername(user.getUsername());
-                return userRepository.saveAndFlush(dbUser);
+            User user = userProvider.findOneByEmail(request.getEmail());
+            if (user == null) {
+                user = UserMapper.mapUserRequestToUser(request);
+                return userProvider.createUser(user).getId();
             }
-            return userRepository.saveAndFlush(user);
+            else {
+                throw new CustomException(1, "User deja existent");
+            }
         } catch (Exception e) {
             throw new CustomException(0, e.getMessage());
         }
     }
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userProvider.findAllUsers();
     }
 
     public List<UserFriends> getUserFriends(Long userId) {
