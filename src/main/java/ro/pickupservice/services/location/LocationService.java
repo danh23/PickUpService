@@ -10,6 +10,7 @@ import ro.pickupservice.controllers.location.bean.request.SetLocationRequest;
 import ro.pickupservice.controllers.location.bean.response.LocationResponse;
 import ro.pickupservice.data.location.LocationRepository;
 import ro.pickupservice.data.location.entity.Location;
+import ro.pickupservice.data.user.UserProvider;
 import ro.pickupservice.data.user.UserRepository;
 import ro.pickupservice.data.user.entity.User;
 import ro.pickupservice.services.user.UserService;
@@ -22,14 +23,14 @@ public class LocationService {
 	private LocationRepository locationRepository;
 
 	@Autowired
-	private UserService userService;
+	private UserProvider userProvider;
 
 	@Autowired
 	private UserRepository userRepository;
 	
 	@CachePut(key="#request.userId")
 	public void setLocation(SetLocationRequest request) {
-		User user = userService.getUserById(request.getUserId());
+		User user = userProvider.findUserById(request.getUserId());
 
 		Location location = getCoordinates(request.getUserId());
 		if(null == location){
@@ -40,7 +41,7 @@ public class LocationService {
 		location.setLongitude(request.getLongitude());
 		user.setLocation(location);
 		locationRepository.saveAndFlush(location);
-		userRepository.saveAndFlush(user);
+		userProvider.createUser(user);
 	}
 	
 

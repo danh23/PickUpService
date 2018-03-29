@@ -3,6 +3,7 @@ package ro.pickupservice.services.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.pickupservice.controllers.user.bean.request.CreateUserRequest;
+import ro.pickupservice.controllers.user.bean.response.UserDto;
 import ro.pickupservice.data.user.UserMapper;
 import ro.pickupservice.data.user.UserProvider;
 import ro.pickupservice.data.user.UserRepository;
@@ -22,20 +23,22 @@ public class UserService {
     @Autowired
     private UserFriendsRepository userFriendsRepository;
 
-    public User getUserById(Long id){
+    public UserDto getUserById(Long id){
         User user = userProvider.findUserById(id);
         if(user == null){
             throw new CustomException(2, "Userul nu exista");
         }
-        return user;
+        UserDto userDto = UserMapper.mapUserToUserDto(user);
+        return userDto;
     }
 
-    public User getUserByEmail(String email) {
+    public UserDto getUserByEmail(String email) {
         User user = userProvider.findOneByEmail(email);
         if(user == null){
             throw new CustomException(2, "Userul nu exista");
         }
-        return user;
+        UserDto userDto = UserMapper.mapUserToUserDto(user);
+        return userDto;
     }
 
     public Long setUser(CreateUserRequest request) {
@@ -53,8 +56,10 @@ public class UserService {
         }
     }
 
-    public List<User> getAllUsers() {
-        return userProvider.findAllUsers();
+    public List<UserDto> getAllUsers() {
+        List<User> users = userProvider.findAllUsers();
+        List<UserDto> userDtos =UserMapper.mapUserListToOrderDtoList(users);
+        return userDtos;
     }
 
     public List<UserFriends> getUserFriends(Long userId) {

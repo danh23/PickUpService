@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ro.pickupservice.controllers.user.bean.request.CreateUserRequest;
 import ro.pickupservice.controllers.user.bean.request.GetNearbyUsersRequest;
 import ro.pickupservice.controllers.user.bean.response.GetNearbyUsersResponse;
+import ro.pickupservice.controllers.user.bean.response.UserDto;
 import ro.pickupservice.data.user.entity.User;
 import ro.pickupservice.data.user_friends.entity.UserFriends;
 import ro.pickupservice.exception.CustomException;
@@ -28,15 +29,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/getUserById/{userId}", method = RequestMethod.POST)
-    public ResponseEntity<User> getUserById(@RequestBody Long userId) {
-        User user = userService.getUserById(userId);
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+    public ResponseEntity<UserDto> getUserById(@RequestBody Long userId) {
+        UserDto user = userService.getUserById(userId);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getUserByEmail", method = RequestMethod.POST)
-    public ResponseEntity<User> getUserByEmail(@RequestBody String email) {
-        User user = userService.getUserByEmail(email);
-        return new ResponseEntity<User>(user, HttpStatus.OK);
+    public ResponseEntity<UserDto> getUserByEmail(@RequestBody String email) {
+        UserDto user = userService.getUserByEmail(email);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getUserFriendsById/{userId}", method = RequestMethod.GET)
@@ -46,9 +47,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
-    public ResponseEntity<List<User>> user() {
-        List<User> userList = userService.getAllUsers();
-        return new ResponseEntity<List<User>>(userList, HttpStatus.OK);
+    public ResponseEntity<List<UserDto>> user() {
+        List<UserDto> userList = userService.getAllUsers();
+        return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
