@@ -27,25 +27,13 @@ public class User implements Serializable{
 	private String lastName;
 	private String city;
 	private String country;
-//	private List<User> friend;
 
 	@OneToOne
+	@PrimaryKeyJoinColumn
 	private Location location;
 
 	@OneToMany(mappedBy = "user")
 	private Set<Order> orders;
-	
-//	@ManyToMany(fetch=FetchType.LAZY)
-//	@JoinTable(name="user_friends", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id")}, inverseJoinColumns = {
-//	@JoinColumn(name = "friend_id", referencedColumnName = "id")})
-//	@JsonIgnore
-//	public List<User> getFriend() {
-//		return friend;
-//	}
-//	public void setFriend(List<User> friend) {
-//		this.friend = friend;
-//	}
-
 
 	public Location getLocation() {
 		return location;

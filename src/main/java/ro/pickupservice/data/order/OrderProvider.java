@@ -31,4 +31,8 @@ public class OrderProvider {
         Float minLongitude = longitude - offset;
         return orderRepository.findAllInArea(minLatitude, maxLatitude, minLongitude, maxLongitude);//orderRepository.findAllByPickUpLatitudeLessThanEqualAndPickUpLatitudeGreaterThanEqualAndPickUpLongitudeLessThanEqualAndPickUpLongitudeGreaterThanEqual(maxLatitude, minLatitude, maxLongitude, minLongitude);
     }
+
+    public void deleteOrderById(Long orderId) {
+        orderRepository.delete(orderId);
+    }
 }

@@ -21,6 +21,7 @@ public class OrderMapper {
         orderDto.setDimensions(order.getDimensions());
         orderDto.setWeight(order.getWeight());
         orderDto.setId(order.getId());
+        orderDto.setUserId(order.getUser().getId());
         orderDto.setPickUpDate(order.getPickUpDate());
         orderDto.setPickUpAddress(order.getPickUpAddress());
         orderDto.setPickUpLocation(order.getPickUpLocation());

@@ -69,4 +69,8 @@ public class OrderService {
         List<OrderSummary> orderDtos = OrderMapper.mapOrdersToOrderSummaryList(orders);
         return orderDtos;
     }
+
+    public void deleteOrderById(Long orderId) {
+        orderProvider.deleteOrderById(orderId);
+    }
 }

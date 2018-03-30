@@ -44,4 +44,10 @@ public class OrderController {
 		List<OrderSummary> response = orderService.getOrdersInArea(request);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+
+	@RequestMapping(value = "/deleteById/{orderId}", method = RequestMethod.GET)
+	public ResponseEntity<Void> deleteById(@PathVariable Long orderId) {
+		orderService.deleteOrderById(orderId);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
 }

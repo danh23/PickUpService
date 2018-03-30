@@ -20,7 +20,6 @@ public class Location implements Serializable{
 	private Float longitude;
 
 	@OneToOne
-	@PrimaryKeyJoinColumn
 	private User user;
 
 	public Location() {

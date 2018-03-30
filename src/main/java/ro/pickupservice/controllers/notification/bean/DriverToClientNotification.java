@@ -4,10 +4,19 @@ import ro.pickupservice.bean.Location;
 
 public class DriverToClientNotification {
 
+    private String topic;
     private String orderTitle;
     private Location driverLocation;
     private Long driverId;
     private Long orderId;
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
 
     public String getOrderTitle() {
         return orderTitle;

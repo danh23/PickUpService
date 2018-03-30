@@ -69,7 +69,7 @@ public class PushNotificationService {
 
 	public String notifyClient(DriverToClientNotification request) throws JsonProcessingException {
 		JSONObject body = new JSONObject();
-		body.put("to", "/topics/" + TOPIC);
+		body.put("to", "/topics/" + request.getTopic());
 		body.put("priority", "high");
 
 		User user = userProvider.findUserById(request.getDriverId());
@@ -79,7 +79,7 @@ public class PushNotificationService {
 		notification.put("body", "Order "+ request.getOrderTitle() + " taken by " + user.getFirstName() + " " + user.getLastName());
 
 		JSONObject data = new JSONObject();
-		data.put("data", objectMapper.writeValueAsString(request));
+		data.put("request", objectMapper.writeValueAsString(request));
 
 		body.put("notification", notification);
 		body.put("data", data);
