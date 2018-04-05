@@ -44,6 +44,9 @@ public class PushNotificationService {
 		if(request.getScope().equals(NotificationScope.START)) {
 			notification.put("title", "Order taken!");
 			notification.put("body", "Order " + request.getOrderTitle() + " taken by " + user.getFirstName() + " " + user.getLastName());
+		} else {
+			notification.put("title", "");
+			notification.put("body", "");
 		}
 		JSONObject data = new JSONObject();
 		data.put("request", objectMapper.writeValueAsString(request));
