@@ -6,4 +6,6 @@ import ro.pickupservice.data.driverSettings.entity.DriverSettings;
 
 @Repository
 public interface DriverSettingsRepository extends JpaRepository<DriverSettings, Long>{
+
+    public DriverSettings findByUserId(Long userId);
 }

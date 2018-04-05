@@ -13,6 +13,7 @@ public class CarType {
     private String name;
     @Embedded
     private Dimensions dimensions;
+    private Float weight;
 
     public Long getId() {
         return id;
@@ -36,5 +37,13 @@ public class CarType {
 
     public void setDimensions(Dimensions dimensions) {
         this.dimensions = dimensions;
+    }
+
+    public Float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Float weight) {
+        this.weight = weight;
     }
 }

@@ -1,25 +1,18 @@
-package ro.pickupservice.data.driverSettings.entity;
+package ro.pickupservice.controllers.driver.bean.response;
 
-import ro.pickupservice.bean.Dimensions;
 import ro.pickupservice.bean.Location;
 import ro.pickupservice.data.carType.entity.CarType;
 import ro.pickupservice.data.user.entity.User;
 
 import javax.persistence.*;
 
-@Entity
-public class DriverSettings {
+public class DriverSettingsDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Embedded
     private Location location;
     private Boolean takeFragile;
-    @ManyToOne
     private CarType carType;
-    @OneToOne
-    private User user;
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -53,11 +46,11 @@ public class DriverSettings {
         this.carType = carType;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

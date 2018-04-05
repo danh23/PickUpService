@@ -24,12 +24,8 @@ public class OrderProvider {
         return orderRepository.findByUserId(userId);
     }
 
-    public List<Order> getOrdersInArea(Float latitude, Float longitude, Float offset) {
-        Float maxLatitude = latitude + offset;
-        Float minLatitude = latitude - offset;
-        Float maxLongitude = longitude + offset;
-        Float minLongitude = longitude - offset;
-        return orderRepository.findAllInArea(minLatitude, maxLatitude, minLongitude, maxLongitude);//orderRepository.findAllByPickUpLatitudeLessThanEqualAndPickUpLatitudeGreaterThanEqualAndPickUpLongitudeLessThanEqualAndPickUpLongitudeGreaterThanEqual(maxLatitude, minLatitude, maxLongitude, minLongitude);
+    public List<Order> getOrdersInArea(Float centerLatitude, Float centerLongitude, Float radius) {
+        return orderRepository.findAllInArea(centerLatitude, centerLongitude, radius);
     }
 
     public void deleteOrderById(Long orderId) {

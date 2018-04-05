@@ -20,12 +20,6 @@ public class NotificationController {
 	
 	@Autowired
 	private PushNotificationService pushNotificationService;
-	
-	@RequestMapping(value = "/send", method = RequestMethod.GET)
-	public ResponseEntity<String> sendNotification() throws JSONException {
-		String response = pushNotificationService.pushNotification();
-		return new ResponseEntity<>(response, HttpStatus.OK);
-	}
 
 	@RequestMapping(value = "/notifyClient", method = RequestMethod.POST)
 	public ResponseEntity<String> notifyClient(@RequestBody DriverToClientNotification request) throws Exception {

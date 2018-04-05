@@ -1,14 +1,17 @@
 package ro.pickupservice.controllers.notification.bean;
 
 import ro.pickupservice.bean.Location;
+import ro.pickupservice.constants.NotificationScope;
 
 public class DriverToClientNotification {
 
     private String topic;
+    private NotificationScope scope;
     private String orderTitle;
     private Location driverLocation;
     private Long driverId;
     private Long orderId;
+    private String estimatedTime;
 
     public String getTopic() {
         return topic;
@@ -16,6 +19,14 @@ public class DriverToClientNotification {
 
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    public NotificationScope getScope() {
+        return scope;
+    }
+
+    public void setScope(NotificationScope scope) {
+        this.scope = scope;
     }
 
     public String getOrderTitle() {
@@ -48,5 +59,13 @@ public class DriverToClientNotification {
 
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
+    }
+
+    public String getEstimatedTime() {
+        return estimatedTime;
+    }
+
+    public void setEstimatedTime(String estimatedTime) {
+        this.estimatedTime = estimatedTime;
     }
 }

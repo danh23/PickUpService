@@ -9,13 +9,24 @@ public class DriverSettingsRequest {
 
     @NotNull
     private Long id;
+    private Long userId;
     private Boolean takeFragile;
     private Location location;
+    private Dimensions dimensions;
+    private Float weight;
     @NotNull
     private Long carTypeId;
 
     public Long getId() {
         return id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public void setId(Long id) {
@@ -36,6 +47,22 @@ public class DriverSettingsRequest {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public Dimensions getDimensions() {
+        return dimensions;
+    }
+
+    public void setDimensions(Dimensions dimensions) {
+        this.dimensions = dimensions;
+    }
+
+    public Float getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Float weight) {
+        this.weight = weight;
     }
 
     public Long getCarTypeId() {

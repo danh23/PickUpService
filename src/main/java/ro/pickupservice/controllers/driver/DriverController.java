@@ -3,12 +3,11 @@ package ro.pickupservice.controllers.driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ro.pickupservice.controllers.driver.bean.request.DriverSettingsRequest;
+import ro.pickupservice.controllers.driver.bean.response.DriverSettingsDto;
 import ro.pickupservice.data.carType.entity.CarType;
+import ro.pickupservice.data.driverSettings.entity.DriverSettings;
 import ro.pickupservice.services.carType.CarTypeService;
 import ro.pickupservice.services.driver.DriverService;
 
@@ -30,7 +29,13 @@ public class DriverController {
         return new ResponseEntity<>(driverId, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/getCarTypes", method = RequestMethod.POST)
+    @RequestMapping(value = "/getSettingsByUserId/{userId}", method = RequestMethod.GET)
+    public ResponseEntity<DriverSettingsDto> getSettingsByUserId(@PathVariable Long userId) {
+       DriverSettingsDto response = driverService.getSettingsByUserId(userId);
+       return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getCarTypes", method = RequestMethod.GET)
     public ResponseEntity<List<CarType>> getCarTypes() {
         List<CarType> response = carTypeService.getCarTypes();
         return new ResponseEntity<>(response, HttpStatus.OK);

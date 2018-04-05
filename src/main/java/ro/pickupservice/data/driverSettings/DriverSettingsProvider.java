@@ -13,4 +13,12 @@ public class DriverSettingsProvider {
     public DriverSettings getDriverSettingsById(Long id) {
         return driverSettingsRepository.findOne(id);
     }
+
+    public DriverSettings getDriverSettingsByUserId(Long userId) {
+        return driverSettingsRepository.findByUserId(userId);
+    }
+
+    public DriverSettings saveDriverSettings(DriverSettings driverSettings) {
+        return driverSettingsRepository.saveAndFlush(driverSettings);
+    }
 }
