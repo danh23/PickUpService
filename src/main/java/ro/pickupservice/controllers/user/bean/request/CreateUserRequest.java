@@ -6,19 +6,11 @@ public class CreateUserRequest {
 
     private String username;
     private String email;
-    private String facebookId;
     private String firstName;
     private String lastName;
     private String city;
     private String country;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    private String password;
 
     public String getEmail() {
         return email;
@@ -26,14 +18,6 @@ public class CreateUserRequest {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getFacebookId() {
-        return facebookId;
-    }
-
-    public void setFacebookId(String facebookId) {
-        this.facebookId = facebookId;
     }
 
     public String getFirstName() {
@@ -67,4 +51,22 @@ public class CreateUserRequest {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 }

@@ -10,13 +10,13 @@ import java.util.List;
 public class UserMapper {
     public static User mapUserRequestToUser(CreateUserRequest request) {
         User user = new User();
-        user.setCity(user.getCity());
-        user.setCountry(user.getCountry());
-        user.setEmail(user.getEmail());
-        user.setFacebookId(user.getFacebookId());
-        user.setFirstName(user.getFirstName());
-        user.setLastName(user.getLastName());
-        user.setUsername(user.getUsername());
+        user.setCity(request.getCity());
+        user.setCountry(request.getCountry());
+        user.setEmail(request.getEmail());
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setPassword(request.getPassword());
+        user.setUsername(request.getUsername());
         return user;
     }
 
@@ -24,7 +24,6 @@ public class UserMapper {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
         userDto.setEmail(user.getEmail());
-        userDto.setUsername(user.getUsername());
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
         userDto.setCity(user.getCity());
