@@ -15,6 +15,7 @@ public class DriverSettings {
     private Long id;
     @Embedded
     private Location location;
+    private Float radius;
     private Boolean takeFragile;
     @ManyToOne
     private CarType carType;
@@ -35,6 +36,14 @@ public class DriverSettings {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public Float getRadius() {
+        return radius;
+    }
+
+    public void setRadius(Float radius) {
+        this.radius = radius;
     }
 
     public Boolean getTakeFragile() {

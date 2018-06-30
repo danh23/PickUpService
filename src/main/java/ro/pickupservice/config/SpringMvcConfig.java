@@ -15,6 +15,8 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter {
                 .addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/");
     }
 
     @Bean

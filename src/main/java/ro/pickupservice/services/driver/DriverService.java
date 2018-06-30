@@ -2,15 +2,23 @@ package ro.pickupservice.services.driver;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.pickupservice.bean.Location;
 import ro.pickupservice.controllers.driver.bean.request.DriverSettingsRequest;
 import ro.pickupservice.controllers.driver.bean.response.DriverSettingsDto;
+import ro.pickupservice.controllers.user.bean.response.UserDto;
 import ro.pickupservice.data.carType.CarTypeProvider;
 import ro.pickupservice.data.carType.entity.CarType;
 import ro.pickupservice.data.driverSettings.DriverSettingsMapper;
 import ro.pickupservice.data.driverSettings.DriverSettingsProvider;
 import ro.pickupservice.data.driverSettings.entity.DriverSettings;
+import ro.pickupservice.data.user.UserMapper;
 import ro.pickupservice.data.user.UserProvider;
 import ro.pickupservice.data.user.entity.User;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class DriverService {
@@ -40,5 +48,13 @@ public class DriverService {
         DriverSettings driverSettings = driverSettingsProvider.getDriverSettingsByUserId(userId);
         DriverSettingsDto response = DriverSettingsMapper.mapDriverSettingsToDriverSettingsDto(driverSettings);
         return response;
+    }
+
+    public List<UserDto> findDriversInArea(Location location) {
+        List<DriverSettings> driverSettingsList = driverSettingsProvider.findAllInArea(location);
+        List<UserDto> userDtos = driverSettingsList.stream().map(ds ->
+                UserMapper.mapUserToUserDto(ds.getUser())
+            ).collect(Collectors.toList());
+        return userDtos;
     }
 }

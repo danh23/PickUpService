@@ -16,11 +16,11 @@ insert into car_type(id, name, width, length, height, weight) values
 insert into car_type(id, name, width, length, height, weight) values
 (2, 'monovolum', 1.5,1.5, 1.5, 400);
 
-insert into driver_settings(id, user_id, latitude, longitude, take_fragile, car_type_id) values
-(1, '3', 45,26, true, 1);
+insert into driver_settings(id, user_id, latitude, longitude, radius, take_fragile, car_type_id) values
+(1, '3', 45,26, 20, true, 1);
 
 insert into orders(id, user_id, title, pick_up_latitude, pick_up_longitude, drop_off_latitude, drop_off_longitude, width, height, length, weight) values
-(1, 2, 'Victoriei', 26.087539, 44.451843, 26.12, 44.49, 2, 3, 1, 200);
+(1, 2, 'Victoriei', 44.451843, 26.087539, 26.12, 44.49, 2, 3, 1, 200);
 
 insert into orders(id, user_id, title, pick_up_latitude, pick_up_longitude, drop_off_latitude, drop_off_longitude, width, height, length, weight) values
 (2, 2, 'EH',44.45130, 26.087889, 26.13, 44.48, 1.5, 1.5, 1, 500);
